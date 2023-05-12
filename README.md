@@ -9,6 +9,6 @@ AS5600 i2C address - ```0x36```
 
 ## Available functions
 ```c
-float getAngle(i2c_inst_t *i2c, const uint8_t ADDRESS);
+float getRawAngle(i2c_inst_t *i2c, const uint8_t ADDRESS);
 ```
 
