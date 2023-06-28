@@ -24,4 +24,7 @@ float getRawAngle(i2c_inst_t *i2c, uint8_t ADDRESS);
 void homeEncoder(AS5600_ENCODER* encoder, float home_position, i2c_inst_t* i2c, uint8_t ENCODER_ADDRESS);
 void updatePosition(AS5600_ENCODER* encoder, i2c_inst_t* i2c, uint8_t ENCODER_ADDRESS);
 
+
+int8_t as5600_init(i2c_inst_t* i2c, uint8_t ADDRESS);
+
 #endif

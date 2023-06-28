@@ -2,7 +2,7 @@
 #include "pico/binary_info.h"
 #include "pico/stdlib.h"
 #include "hardware/i2c.h"
-#include "encoder.h"
+#include "include/encoder.h"
 
 #define AS5600_I2C_ADDRESS 0x36
 

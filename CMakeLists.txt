@@ -15,10 +15,10 @@ pico_sdk_init()
 
 add_executable(main
     main.c
-    encoder.c
+        src/encoder.c
 )
 
-add_library(encoder encoder.h encoder.c)
+add_library(encoder include/encoder.h src/encoder.c)
 target_link_libraries(encoder pico_stdlib hardware_i2c)
 
 target_link_libraries(main pico_stdlib hardware_i2c)

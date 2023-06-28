@@ -1,4 +1,39 @@
-#include "encoder.h"
+#include "../include/encoder.h"
+
+int8_t as5600_init(i2c_inst_t* i2c, uint8_t ADDRESS){
+    // 1. Check if the sensor is available at given address by reading one empty byte from the sensor
+
+    uint8_t rxdata;
+    int ret = i2c_read_blocking(i2c, ADDRESS, &rxdata, 1, false);
+
+    if(ret >= 0){
+        printf("AS5600 sensor successfully detected at 0x%x address!\n", ADDRESS);
+    }
+    else{
+        printf("Failed to connect to the sensort at 0x%x address!\n", ADDRESS);
+        return -1;
+    }
+
+    // Check if the magnet is present by reading the 0x0B STATUS register
+    uint8_t status;
+    typedef enum{MAGNET_HIGH=0x08, MAGNET_LOW=0x10, MAGNET_DETECTED=0x20} STATUS;
+    i2c_read_blocking(i2c, ADDRESS, &status, 1, false);
+
+    if(status == MAGNET_DETECTED){
+        printf("Magnet detected!\n");
+    }
+    else if(status == MAGNET_LOW){
+        printf("Magnet too weak! Aborting...\n");
+        return -1;
+    }
+    else if(status == MAGNET_HIGH){
+        printf("Magnet too strong! Aborting...\n");
+        return -1;
+    }
+
+    printf("AS5600 sensor initialized successfully!\n");
+    return 0;
+}
 
 float getRawAngle(i2c_inst_t *i2c, uint8_t ADDRESS)
 {
