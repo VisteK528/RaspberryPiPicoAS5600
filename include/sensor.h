@@ -8,10 +8,13 @@
 
 typedef struct{
     float rawPosition;
+    float oldPosition;
     float position;
 
-    float offset;
+    float velocity;
+    float oldVelocity;
 
+    float offset;
 
 } AS5600_ENCODER;
 

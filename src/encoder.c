@@ -60,8 +60,7 @@ uint16_t as5600_read_from_double_register(i2c_inst_t* i2c, uint8_t ADDRESS, uint
                                          uint8_t REGISTER_MSB_ADDRESS){
     uint16_t data, high_byte, low_byte;
     low_byte = as5600_read_from_single_register(i2c, ADDRESS, REGISTER_LSB_ADDRESS);
-    high_byte = as5600_read_from_single_register(i2c, ADDRESS, REGISTER_MSB_ADDRESS);
-    high_byte = high_byte << 8;
+    high_byte = (uint16_t)as5600_read_from_single_register(i2c, ADDRESS, REGISTER_MSB_ADDRESS) << 8;
     data = high_byte | low_byte;
     return data;
 }
