@@ -10,16 +10,14 @@ set(CMAKE_CXX_STANDARD 17)
 set(PICO_EXAMPLES_PATH ${PROJECT_SOURCE_DIR})
 
 # Initialize the SDK
-
 pico_sdk_init()
+include_directories(include)
+FILE(GLOB_RECURSE SRC "src/*.c")
 
 add_executable(main
-    main.c
-        src/encoder.c
+        main.c
+        ${SRC}
 )
-
-add_library(encoder include/encoder.h src/encoder.c)
-target_link_libraries(encoder pico_stdlib hardware_i2c)
 
 target_link_libraries(main pico_stdlib hardware_i2c)
 
