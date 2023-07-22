@@ -7,6 +7,13 @@
 #include "encoder.h"
 
 typedef struct{
+    float degPerRotation;
+
+    int turns;
+    unsigned char quadrant;
+    unsigned char previous_quadrant;
+    float totalAngle;
+
     float rawPosition;
     float oldPosition;
     float position;
